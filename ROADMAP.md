@@ -7,7 +7,7 @@
 
 ```mermaid
 gantt
-    title Olive Development Milestones
+    title Olive Development Milestones (100% Complete)
     dateFormat  YYYY-MM-DD
     section Phase 1: Engine & Scaffolding
     Project Setup & SPM Architecture     :done, p1_1, 2026-08-21, 1d
@@ -28,8 +28,8 @@ gantt
     QuickLook, DNS & Spotlight Cleaners  :done, p6_1, 2026-08-21, 1d
     Startup Items & LaunchAgents Manager :done, p6_2, 2026-08-21, 1d
     section Phase 7: Release & Packaging
-    Standalone .app & DMG Packager       :active, p7_1, 2026-08-21, 1d
-    Homebrew Cask Formula & GitHub CI    :p7_2, after p7_1, 1d
+    Standalone .app & DMG Packager       :done, p7_1, 2026-08-21, 1d
+    Homebrew Cask Formula & GitHub CI    :done, p7_2, 2026-08-21, 1d
 ```
 
 ---
@@ -46,8 +46,8 @@ gantt
 ### 🎯 Milestone 2: Live Monitor & Menu Bar HUD (Completed ✅)
 - [x] Build `SystemMonitorService` in Swift:
   - [x] CPU usage (User, System, Idle, per-core) via `host_processor_info`.
-  - [x] Memory statistics (Active, Inactive, Wired, Compressed, Free) via `host_statistics64`.
-  - [x] Disk space & filesystem analysis via `statfs`.
+  - [x] Memory statistics (Active, Inactive, Wired, Compressed, Free) matching Activity Monitor formula.
+  - [x] Disk space & filesystem analysis matching macOS Finder APFS Important/Available capacity.
   - [x] Network throughput tracking via `getifaddrs`.
   - [x] Real-time 0–100 Health Score algorithm.
 - [x] Implement `MenuBarExtra` system tray item in top macOS bar.
@@ -87,8 +87,9 @@ gantt
   - [x] Enable/disable toggle switches via `launchctl`.
   - [x] Plist inspect in Finder & safe move to Trash.
 
-### 🎯 Milestone 7: Release & Packaging (In Progress 🔄)
-- [ ] Standalone `.app` bundle builder script (with embedded Info.plist and app icon).
-- [ ] `.dmg` installer generator for drag-and-drop install into `/Applications`.
-- [ ] Homebrew Cask formula (`brew install --cask olive`).
-- [ ] Automated GitHub Releases CI/CD workflow.
+### 🎯 Milestone 7: Release & Packaging (Completed ✅)
+- [x] Standalone **`Olive.app`** bundle builder script (`scripts/build_app.sh`).
+- [x] High-resolution squircle App Icon generator (`scripts/generate_app_icon.swift`).
+- [x] **`Olive-1.0.0.dmg`** installer generator for drag-and-drop install into `/Applications`.
+- [x] Homebrew Cask formula (`Casks/olive.rb` for `brew install --cask olive`).
+- [x] Automated GitHub Releases CI/CD workflow (`.github/workflows/release.yml`).
