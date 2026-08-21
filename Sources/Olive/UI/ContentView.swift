@@ -3,6 +3,7 @@ import SwiftUI
 public enum NavigationSection: String, CaseIterable, Identifiable {
     case dashboard = "Dashboard"
     case cleaner = "Smart Clean"
+    case devCleaner = "Developer Clean"
     case uninstaller = "App Uninstaller"
     case diskMap = "Disk Analyzer"
     case maintenance = "Maintenance"
@@ -14,6 +15,7 @@ public enum NavigationSection: String, CaseIterable, Identifiable {
         switch self {
         case .dashboard: return "gauge.with.dots.needle.50percent"
         case .cleaner: return "sparkles"
+        case .devCleaner: return "hammer.fill"
         case .uninstaller: return "trash.circle"
         case .diskMap: return "internaldrive"
         case .maintenance: return "wrench.and.screwdriver"
@@ -52,6 +54,8 @@ public struct ContentView: View {
                         DashboardView()
                     case .cleaner:
                         CleanerView()
+                    case .devCleaner:
+                        DeveloperCleanerView()
                     case .uninstaller:
                         UninstallerView()
                     case .diskMap:
