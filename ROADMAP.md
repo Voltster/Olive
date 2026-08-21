@@ -26,9 +26,9 @@ gantt
     Interactive Sunburst & Treemap Chart :done, p5_2, 2026-08-21, 1d
     section Phase 6: Maintenance & Startup
     QuickLook, DNS & Spotlight Cleaners  :done, p6_1, 2026-08-21, 1d
-    Startup Items & LaunchAgents Manager :active, p6_2, 2026-08-21, 1d
+    Startup Items & LaunchAgents Manager :done, p6_2, 2026-08-21, 1d
     section Phase 7: Release & Packaging
-    Standalone .app & DMG Packager       :p7_1, after p6_2, 1d
+    Standalone .app & DMG Packager       :active, p7_1, 2026-08-21, 1d
     Homebrew Cask Formula & GitHub CI    :p7_2, after p7_1, 1d
 ```
 
@@ -76,16 +76,19 @@ gantt
 - [x] Interactive breadcrumb navigation trail (`Home > Library > ...`).
 - [x] Dedicated Large Files Finder tab (>100MB / >1GB) with direct Trash and Finder reveal actions.
 
-### 🎯 Milestone 6: System Maintenance & Startup Manager (In Progress 🔄)
+### 🎯 Milestone 6: System Maintenance & Startup Manager (Completed ✅)
 - [x] Quick maintenance actions:
   - [x] Flush DNS Cache (`dscacheutil`, `mDNSResponder`)
   - [x] Rebuild QuickLook Cache (`qlmanage`)
   - [x] Re-index Spotlight Search (`mdimport`)
   - [x] Purge Inactive Memory (`purge`)
-- [ ] Startup Items & LaunchAgents toggle manager (Inspect `/Library/LaunchAgents` and disable boot slowdowns).
+- [x] **Startup Items & LaunchAgents Manager**:
+  - [x] Scan `~/Library/LaunchAgents`, `/Library/LaunchAgents`, and `/Library/LaunchDaemons`.
+  - [x] Enable/disable toggle switches via `launchctl`.
+  - [x] Plist inspect in Finder & safe move to Trash.
 
-### 🎯 Milestone 7: Release & Packaging (Up Next ⏳)
-- [ ] Standalone `.app` bundle builder script (with embedded metadata and app icon).
+### 🎯 Milestone 7: Release & Packaging (In Progress 🔄)
+- [ ] Standalone `.app` bundle builder script (with embedded Info.plist and app icon).
 - [ ] `.dmg` installer generator for drag-and-drop install into `/Applications`.
 - [ ] Homebrew Cask formula (`brew install --cask olive`).
 - [ ] Automated GitHub Releases CI/CD workflow.
