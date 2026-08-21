@@ -72,12 +72,11 @@ public struct ContentView: View {
     }
     
     private var sidebarBottomBadge: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "shield.lefthalf.filled")
-                .foregroundStyle(Theme.accentOlive)
+        HStack(spacing: 10) {
+            OliveLogoView(size: 28)
             VStack(alignment: .leading, spacing: 2) {
-                Text("Olive 🫒")
-                    .font(.caption.bold())
+                Text("Olive")
+                    .font(.system(.caption, design: .rounded, weight: .bold))
                 Text("Zero Telemetry · GPL-3.0")
                     .font(.caption2)
                     .foregroundStyle(.secondary)

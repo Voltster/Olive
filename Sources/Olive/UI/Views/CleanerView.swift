@@ -115,7 +115,7 @@ public struct CleanerView: View {
         .sheet(item: $selectedCategoryForReview) { summary in
             categoryDetailSheet(summary: summary)
         }
-        .alert("Cleanup Complete! 🫒", isPresented: $showingCelebration) {
+        .alert("Cleanup Complete!", isPresented: $showingCelebration) {
             Button("Done", role: .cancel) {}
         } message: {
             if let report = cleanerService.lastReport {

@@ -46,17 +46,21 @@ public struct SettingsView: View {
                 .glassCard()
                 
                 // About Section
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("About Olive 🫒")
-                        .font(.headline)
+                HStack(spacing: 16) {
+                    OliveLogoView(size: 44)
                     
-                    Text("Version 1.0.0 (GPL-3.0 Open Source)")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    
-                    Text("A gentle, privacy-first, community-driven Mac optimizer and live system telemetry monitor.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Olive")
+                            .font(.system(.title3, design: .rounded, weight: .bold))
+                        
+                        Text("Version 1.0.0 (GPL-3.0 Open Source)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                        
+                        Text("A gentle, privacy-first, community-driven Mac optimizer and live system telemetry monitor.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .glassCard()
             }

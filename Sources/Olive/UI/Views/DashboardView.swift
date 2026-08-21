@@ -100,7 +100,7 @@ public struct DashboardView: View {
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("Mac System Health: \(monitorService.currentTelemetry.healthScore >= 85 ? "Excellent 🫒" : (monitorService.currentTelemetry.healthScore >= 70 ? "Good" : "Needs Attention"))")
+                Text("Mac System Health: \(monitorService.currentTelemetry.healthScore >= 85 ? "Optimal" : (monitorService.currentTelemetry.healthScore >= 70 ? "Good" : "Needs Attention"))")
                     .font(.system(.title2, design: .rounded, weight: .bold))
                 
                 Text("Your Mac is running smoothly. All sensors and thermal levels are within optimal operating bounds.")

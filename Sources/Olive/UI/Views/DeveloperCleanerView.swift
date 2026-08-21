@@ -136,7 +136,7 @@ public struct DeveloperCleanerView: View {
                 }
             }
         }
-        .alert("Developer Clean Complete! 🫒", isPresented: $showingCelebration) {
+        .alert("Developer Clean Complete!", isPresented: $showingCelebration) {
             Button("Done", role: .cancel) {}
         } message: {
             if let report = devService.lastReport {
