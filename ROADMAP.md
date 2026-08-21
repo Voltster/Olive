@@ -10,76 +10,82 @@ gantt
     title Olive Development Milestones
     dateFormat  YYYY-MM-DD
     section Phase 1: Engine & Scaffolding
-    Project Setup & SPM Architecture     :done, p1_1, 2026-08-21, 2d
-    CLI Bridge & Process Execution        :active, p1_2, 2026-08-23, 3d
+    Project Setup & SPM Architecture     :done, p1_1, 2026-08-21, 1d
+    CLI Bridge & Process Execution        :done, p1_2, 2026-08-21, 1d
     section Phase 2: Live Monitor & HUD
-    Mach/IOKit Telemetry Engine          :p2_1, after p1_2, 4d
-    Menu Bar Extra & Popover HUD         :p2_2, after p2_1, 3d
+    Mach/IOKit Telemetry Engine          :done, p2_1, 2026-08-21, 1d
+    Menu Bar Extra & Popover HUD         :done, p2_2, 2026-08-21, 1d
     section Phase 3: Cleaner Module
-    System & Dev Cache Scanners          :p3_1, after p2_2, 4d
-    Dry-Run Review & Safe Trash Deletion :p3_2, after p3_1, 3d
+    System & Dev Cache Scanners          :done, p3_1, 2026-08-21, 1d
+    Dry-Run Review & Safe Trash Deletion :done, p3_2, 2026-08-21, 1d
     section Phase 4: App Uninstaller
-    App Bundle & Library Dependency Map  :p4_1, after p3_2, 4d
-    Batch Uninstall & Leftover Cleaner   :p4_2, after p4_1, 3d
+    App Bundle & Library Dependency Map  :done, p4_1, 2026-08-21, 1d
+    Batch Uninstall & Leftover Cleaner   :done, p4_2, 2026-08-21, 1d
     section Phase 5: Disk Visualizer
-    Hierarchical Disk Scanner Engine     :p5_1, after p4_2, 4d
-    Interactive Sunburst & Treemap Chart :p5_2, after p5_1, 4d
-    section Phase 6: Maintenance & Polish
-    QuickLook, DNS & Startup Manager     :p6_1, after p5_2, 3d
-    App Notarization, Sparkle & Homebrew :p6_2, after p6_1, 4d
+    Hierarchical Disk Scanner Engine     :done, p5_1, 2026-08-21, 1d
+    Interactive Sunburst & Treemap Chart :done, p5_2, 2026-08-21, 1d
+    section Phase 6: Maintenance & Startup
+    QuickLook, DNS & Spotlight Cleaners  :done, p6_1, 2026-08-21, 1d
+    Startup Items & LaunchAgents Manager :active, p6_2, 2026-08-21, 1d
+    section Phase 7: Release & Packaging
+    Standalone .app & DMG Packager       :p7_1, after p6_2, 1d
+    Homebrew Cask Formula & GitHub CI    :p7_2, after p7_1, 1d
 ```
 
 ---
 
 ## Detailed Milestone Breakdown
 
-### 🎯 Milestone 1: Foundation & Core Scaffolding
-- [x] Select project name & branding (**Olive**).
+### 🎯 Milestone 1: Foundation & Core Scaffolding (Completed ✅)
+- [x] Select project name & branding (**Olive** 🫒).
 - [x] Create PRD, Design System, Roadmap, Security & Privacy specs.
 - [x] Initialize Git repository & `.gitignore`.
-- [ ] Set up Swift Package / Xcode structure for macOS 14+.
-- [ ] Implement `AsyncProcessRunner` to execute background commands and parse JSON output safely.
+- [x] Set up Swift Package structure for macOS 14+.
+- [x] Implement `ProcessRunner` to execute background commands and parse JSON output safely.
 
-### 🎯 Milestone 2: Live Monitor & Menu Bar HUD
-- [ ] Build `TelemetryEngine` in Swift:
-  - CPU usage (User, System, Idle, per-core) via `host_processor_info`.
-  - Memory statistics (Active, Inactive, Wired, Compressed, Free) via `host_statistics64`.
-  - Disk space & I/O via `statfs` and `DADiskCopyDescription`.
-  - Network throughput tracking via `getifaddrs`.
-- [ ] Implement `MenuBarExtra` system tray icon with configurable badge modes (CPU / RAM / Fan).
-- [ ] Build dynamic HUD Popover with live sparkline charts.
+### 🎯 Milestone 2: Live Monitor & Menu Bar HUD (Completed ✅)
+- [x] Build `SystemMonitorService` in Swift:
+  - [x] CPU usage (User, System, Idle, per-core) via `host_processor_info`.
+  - [x] Memory statistics (Active, Inactive, Wired, Compressed, Free) via `host_statistics64`.
+  - [x] Disk space & filesystem analysis via `statfs`.
+  - [x] Network throughput tracking via `getifaddrs`.
+  - [x] Real-time 0–100 Health Score algorithm.
+- [x] Implement `MenuBarExtra` system tray item in top macOS bar.
+- [x] Build dynamic `MenuBarHUDView` popover with live telemetry.
 
-### 🎯 Milestone 3: Deep System Cleaner
-- [ ] Build `CleanerEngine` with scanning rules for:
-  - User Caches (`~/Library/Caches`)
-  - Developer Artifacts (`node_modules`, `DerivedData`, `.build`, `target`, `venv`)
-  - Diagnostic & Application Logs (`~/Library/Logs`)
-  - Browser Caches (Chrome, Safari, Firefox, Arc, Brave)
-  - Trash folders across internal and external volumes
-- [ ] Implement `CleanupReviewSheet`: interactive tree review with size calculations and multi-select.
-- [ ] Safe deletion implementation via `FileManager.default.trashItem(at:resultingItemURL:)`.
+### 🎯 Milestone 3: Deep System Cleaner (Completed ✅)
+- [x] Build `CleanerService` with scanning rules for:
+  - [x] User Caches (`~/Library/Caches`)
+  - [x] Developer Artifacts (`node_modules`, `DerivedData`, `.build`, `.npm`, `Cargo`, Homebrew)
+  - [x] Diagnostic & Application Logs (`~/Library/Logs`, `/Library/Logs/DiagnosticReports`)
+  - [x] Browser Caches (Chrome, Safari, Arc)
+  - [x] System Trash (`~/.Trash`)
+- [x] Implement `CategoryDetailSheet`: interactive item-level inspector with individual checkboxes and "Reveal in Finder" buttons.
+- [x] Safe deletion implementation via `FileManager.default.trashItem(at:resultingItemURL:)`.
 
-### 🎯 Milestone 4: Smart App Uninstaller
-- [ ] App scanner for `/Applications` and `~/Applications`.
-- [ ] Residual artifact resolver for:
-  - `Application Support`, `Caches`, `Preferences`, `Saved Application State`, `WebKit`, `LaunchAgents`.
-- [ ] Uninstaller UI with search, size sorting, and bulk selection.
+### 🎯 Milestone 4: Smart App Uninstaller (Completed ✅)
+- [x] App scanner for `/Applications` and `~/Applications`.
+- [x] Native high-res app icon extraction via `AppIconView` (`NSWorkspace.shared.icon`).
+- [x] Residual artifact resolver for:
+  - [x] `Application Support`, `Caches`, `Preferences`, `Saved Application State`, `WebKit`.
+- [x] Uninstaller UI with live search, size badges, and complete leftover inspection sheet.
 
-### 🎯 Milestone 5: Visual Disk Space Analyzer
-- [ ] Multi-threaded fast directory tree crawler.
-- [ ] Custom SwiftUI / Canvas `SunburstChartView` and `TreemapView`.
-- [ ] QuickLook integration (trigger preview on `Spacebar`).
-- [ ] Large & Old Files filter table (>500MB, >1GB, >90 days unaccessed).
+### 🎯 Milestone 5: Visual Disk Space Analyzer (Completed ✅)
+- [x] Non-blocking multi-level directory tree crawler (`DiskNode`).
+- [x] Custom Canvas-rendered interactive `SunburstChartView` with radial concentric rings, hover detection, and click-to-drill-down.
+- [x] Interactive breadcrumb navigation trail (`Home > Library > ...`).
+- [x] Dedicated Large Files Finder tab (>100MB / >1GB) with direct Trash and Finder reveal actions.
 
-### 🎯 Milestone 6: System Maintenance & Startup Manager
-- [ ] Quick maintenance actions:
-  - Flush DNS Cache (`dscacheutil`, `mDNSResponder`)
-  - Rebuild QuickLook Cache (`qlmanage`)
-  - Re-index Spotlight Search (`mdimport`, `mdutil`)
-- [ ] Login Items and LaunchAgents viewer & toggle switch.
+### 🎯 Milestone 6: System Maintenance & Startup Manager (In Progress 🔄)
+- [x] Quick maintenance actions:
+  - [x] Flush DNS Cache (`dscacheutil`, `mDNSResponder`)
+  - [x] Rebuild QuickLook Cache (`qlmanage`)
+  - [x] Re-index Spotlight Search (`mdimport`)
+  - [x] Purge Inactive Memory (`purge`)
+- [ ] Startup Items & LaunchAgents toggle manager (Inspect `/Library/LaunchAgents` and disable boot slowdowns).
 
-### 🎯 Milestone 7: Open-Source Community Release (v1.0)
-- [ ] Integrate **Sparkle Framework** for automated updates.
-- [ ] Set up GitHub Actions workflow for automatic DMG builds and releases.
-- [ ] Create Homebrew Cask formula (`brew install --cask olive`).
-- [ ] Publish documentation, screenshots, and community contribution guidelines.
+### 🎯 Milestone 7: Release & Packaging (Up Next ⏳)
+- [ ] Standalone `.app` bundle builder script (with embedded metadata and app icon).
+- [ ] `.dmg` installer generator for drag-and-drop install into `/Applications`.
+- [ ] Homebrew Cask formula (`brew install --cask olive`).
+- [ ] Automated GitHub Releases CI/CD workflow.
