@@ -27,7 +27,7 @@ public struct DashboardView: View {
                         title: "Memory Used",
                         value: monitorService.currentTelemetry.memoryUsagePercent,
                         unit: "%",
-                        subtitle: "\(ByteFormatter.format(monitorService.currentTelemetry.memoryUsedBytes)) of \(ByteFormatter.format(monitorService.currentTelemetry.memoryTotalBytes))",
+                        subtitle: "\(ByteFormatter.format(monitorService.currentTelemetry.memoryUsedBytes, isMemory: true)) of \(ByteFormatter.format(monitorService.currentTelemetry.memoryTotalBytes, isMemory: true))",
                         iconName: "memorychip",
                         gradient: monitorService.currentTelemetry.memoryUsagePercent > 80 ? Theme.amberGradient : Theme.oliveGradient
                     )

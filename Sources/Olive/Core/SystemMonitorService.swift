@@ -129,7 +129,7 @@ public final class SystemMonitorService: @unchecked Sendable {
         return (min(100.0, max(0.0, avgUsage)), perCore)
     }
     
-    // MARK: - Memory Telemetry
+    // MARK: - Memory Telemetry (Matches macOS Activity Monitor exact formula)
     private func getMemoryUsage() -> (used: UInt64, total: UInt64, free: UInt64, usagePercent: Double, pressure: MemoryPressureLevel) {
         let hostPort = mach_host_self()
         var size = mach_msg_type_number_t(MemoryLayout<vm_statistics64_data_t>.size / MemoryLayout<integer_t>.size)
@@ -147,12 +147,15 @@ public final class SystemMonitorService: @unchecked Sendable {
         }
         
         let pageSize = UInt64(vm_kernel_page_size)
-        let active = UInt64(vmStats.active_count) * pageSize
+        let internalPages = UInt64(vmStats.internal_page_count)
+        let purgeablePages = UInt64(vmStats.purgeable_count)
+        let appMemory = (internalPages > purgeablePages ? internalPages - purgeablePages : 0) * pageSize
         let wired = UInt64(vmStats.wire_count) * pageSize
         let compressed = UInt64(vmStats.compressor_page_count) * pageSize
-        let free = UInt64(vmStats.free_count) * pageSize
         
-        let used = active + wired + compressed
+        // Activity Monitor: Memory Used = App Memory + Wired Memory + Compressed Memory
+        let used = appMemory + wired + compressed
+        let free = totalMem > used ? totalMem - used : 0
         let percent = totalMem > 0 ? (Double(used) / Double(totalMem)) * 100.0 : 0
         
         let pressure: MemoryPressureLevel
@@ -167,8 +170,21 @@ public final class SystemMonitorService: @unchecked Sendable {
         return (used, totalMem, free, percent, pressure)
     }
     
-    // MARK: - Disk Telemetry
+    // MARK: - Disk Telemetry (Matches macOS Finder APFS Important/Available Capacity)
     private func getDiskUsage() -> (used: UInt64, total: UInt64, free: UInt64, usagePercent: Double) {
+        let url = URL(fileURLWithPath: "/")
+        if let vals = try? url.resourceValues(forKeys: [
+            .volumeTotalCapacityKey,
+            .volumeAvailableCapacityForImportantUsageKey,
+            .volumeAvailableCapacityKey
+        ]), let totalCap = vals.volumeTotalCapacity, totalCap > 0 {
+            let total = UInt64(totalCap)
+            let free = UInt64(max(0, vals.volumeAvailableCapacityForImportantUsage ?? Int64(vals.volumeAvailableCapacity ?? 0)))
+            let used = total > free ? total - free : 0
+            let percent = (Double(used) / Double(total)) * 100.0
+            return (used, total, free, percent)
+        }
+        
         var stat = statfs()
         guard statfs("/", &stat) == 0 else {
             return (0, 0, 0, 0)

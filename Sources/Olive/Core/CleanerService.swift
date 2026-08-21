@@ -376,16 +376,27 @@ public final class CleanerService: @unchecked Sendable {
 }
 
 public enum ByteFormatter {
-    public static func format(_ bytes: UInt64) -> String {
-        let b = Double(bytes)
-        if b >= 1_073_741_824 {
-            return String(format: "%.2f GB", b / 1_073_741_824.0)
-        } else if b >= 1_048_576 {
-            return String(format: "%.1f MB", b / 1_048_576.0)
-        } else if b >= 1024 {
-            return String(format: "%.0f KB", b / 1024.0)
-        } else {
-            return "\(bytes) B"
+    private static let fileFormatter: ByteCountFormatter = {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .file
+        formatter.allowedUnits = [.useAll]
+        formatter.includesUnit = true
+        return formatter
+    }()
+    
+    private static let memoryFormatter: ByteCountFormatter = {
+        let formatter = ByteCountFormatter()
+        formatter.countStyle = .memory
+        formatter.allowedUnits = [.useAll]
+        formatter.includesUnit = true
+        return formatter
+    }()
+    
+    public static func format(_ bytes: UInt64, isMemory: Bool = false) -> String {
+        let count = Int64(min(UInt64(Int64.max), bytes))
+        if isMemory {
+            return memoryFormatter.string(fromByteCount: count)
         }
+        return fileFormatter.string(fromByteCount: count)
     }
 }
