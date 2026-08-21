@@ -1,4 +1,4 @@
-name: NovaClean CI
+name: Olive CI
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Show Swift Version
         run: swift --version
 
-      - name: Build NovaClean
+      - name: Build Olive
         run: swift build -v
 
       - name: Run Tests

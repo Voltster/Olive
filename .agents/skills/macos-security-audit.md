@@ -1,7 +1,7 @@
 # Skill: macOS Security & Deletion Safety Audit
 
 ## Purpose
-Enforces strict security boundaries, safe deletion practices, and privilege restrictions across all NovaClean codebase modifications.
+Enforces strict security boundaries, safe deletion practices, and privilege restrictions across all Olive codebase modifications.
 
 ## Rules & Verification Checklist
 

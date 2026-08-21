@@ -1,10 +1,10 @@
 ---
-description: Swift and macOS SwiftUI Development Best Practices for NovaClean
+description: Swift and macOS SwiftUI Development Best Practices for Olive
 globs: **/*.swift
 alwaysApply: true
 ---
 
-# Swift & macOS Best Practices for NovaClean
+# Swift & macOS Best Practices for Olive
 
 ## 1. SwiftUI & State Management
 - Use `@Observable` (Observation framework) for modern view models in macOS 14+.

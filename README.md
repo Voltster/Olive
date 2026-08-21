@@ -1,7 +1,7 @@
-# ⚡ NovaClean
+# 🫒 Olive
 
 <div align="center">
-  <p><strong>The modern, privacy-first, open-source Mac optimizer and system monitor.</strong></p>
+  <p><strong>The gentle, privacy-first, open-source Mac optimizer and system monitor.</strong></p>
   <p>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL_v3-blue.svg?style=flat-square" alt="License: GPL v3"></a>
     <a href="https://apple.com/macos"><img src="https://img.shields.io/badge/Platform-macOS_14%2B-black.svg?style=flat-square&logo=apple" alt="macOS 14+"></a>
@@ -41,8 +41,8 @@
 ### Building from Source
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/NovaClean.git
-cd NovaClean
+git clone https://github.com/your-username/Olive.git
+cd Olive
 
 # Open in Xcode or build via Swift Package Manager
 swift build -c release
@@ -62,6 +62,6 @@ swift build -c release
 
 ## 📄 License & Attribution
 
-NovaClean is released under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for details.
+Olive is released under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for details.
 
 *Attribution*: Inspired by the open-source CLI project [Mole](https://github.com/tw93/mole) by Tw93.

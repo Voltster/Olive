@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD)
 
-## Project: NovaClean
-**Tagline**: *The Modern, Privacy-First, Open-Source Mac Optimizer & System Monitor*  
+## Project: Olive
+**Tagline**: *The Gentle, Privacy-First, Open-Source Mac Optimizer & System Monitor*  
 **License**: GNU General Public License v3.0 (GPL-3.0)  
 **Target Platform**: macOS 14.0 (Sonoma) and macOS 15.0+ (Sequoia), Apple Silicon & Intel  
 **Architecture**: Native Swift & SwiftUI + Modular System Telemetry Engine
@@ -14,7 +14,7 @@
 Mac users lack a genuinely free, open-source, privacy-first native application that combines comprehensive system cleaning, leftover-free application uninstallation, disk space exploration, and real-time hardware monitoring. Existing commercial alternatives (such as CleanMyMac, DaisyDisk, iStat Menus) charge recurring subscriptions or steep one-time fees, while command-line tools lack visual accessibility for everyday users.
 
 ### 1.2 Objective
-NovaClean delivers an all-in-one native macOS application that provides visual clarity, deep system cleaning, and real-time telemetry with zero telemetry, zero advertisements, and zero paywalls.
+Olive delivers an all-in-one native macOS application that provides visual clarity, deep system cleaning, and real-time telemetry with zero telemetry, zero advertisements, and zero paywalls.
 
 ---
 
@@ -96,7 +96,7 @@ graph TD
         QuickLook["QuickLook Preview Bridge"]
     end
 
-    subgraph Core ["NovaClean Core Services"]
+    subgraph Core ["Olive Core Services"]
         CleanEngine["Cleanup Engine"]
         UninstallEngine["Uninstall Engine"]
         DiskScanEngine["Disk Scan Engine"]

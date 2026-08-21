@@ -1,4 +1,4 @@
-# CLAUDE.md - Developer Guide for NovaClean
+# CLAUDE.md - Developer Guide for Olive
 
 ## Build & Test Commands
 ```bash

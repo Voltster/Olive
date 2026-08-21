@@ -1,7 +1,7 @@
 # Design System & UI Specification
 
-## Project: NovaClean
-**Design Philosophy**: *Ultra-modern, glassmorphic, fluid, and strictly adhering to Apple Human Interface Guidelines (HIG).*
+## Project: Olive
+**Design Philosophy**: *Organic elegance, glassmorphism, fluidity, and strictly adhering to Apple Human Interface Guidelines (HIG).*
 
 ---
 
@@ -10,18 +10,18 @@
 ### 1.1 Color Palette
 
 ```
-Dark Mode Primary: #0D1117 (Deep Space Slate)
-Sidebar Background: #161B22 with NSVisualEffectView Material (.sidebar)
+Dark Mode Primary: #0C1014 (Deep Forest Obsidian)
+Sidebar Background: #141A20 with NSVisualEffectView Material (.sidebar)
 Card Background:    rgba(255, 255, 255, 0.05) with 1px border rgba(255, 255, 255, 0.1)
 ```
 
 | Token Name | Hex Code | Purpose | Usage Example |
 | :--- | :--- | :--- | :--- |
-| **`AccentPrimary`** | `#6366F1` (Indigo Glow) | Primary actions, scan buttons | "Scan System", Selected Tab |
-| **`AccentTeal`** | `#14B8A6` (Cyber Teal) | Storage recovered, low load | Disk Free Space, Healthy Score |
+| **`AccentOlive`** | `#84CC16` (Vibrant Olive) | Primary actions, scan buttons | "Scan System", Selected Tab |
+| **`AccentSage`** | `#10B981` (Fresh Emerald) | Storage recovered, healthy status | Disk Free Space, Healthy Score |
 | **`AccentAmber`** | `#F59E0B` (Amber Warning) | Moderate load, dry-run warning | Memory Pressure Moderate, Large Files |
 | **`AccentRose`** | `#F43F5E` (Vibrant Rose) | High load, destructive delete | "Move to Trash", CPU > 85% |
-| **`AccentPurple`** | `#A855F7` (Nebula Purple) | Developer artifacts | Node Modules, Xcode Caches |
+| **`AccentViolet`** | `#8B5CF6` (Nebula Purple) | Developer artifacts | Node Modules, Xcode Caches |
 | **`SurfaceCard`** | `rgba(255,255,255,0.06)` | Elevated cards, metric panels | Metric Tiles, Review Items |
 | **`BorderSubtle`** | `rgba(255,255,255,0.12)` | Card outlines, dividers | Visual separation |
 
@@ -38,7 +38,7 @@ Card Background:    rgba(255, 255, 255, 0.05) with 1px border rgba(255, 255, 255
 
 ```
 +-------------------------------------------------------------------------------+
-|  🔴 🟡 🟢   NovaClean                                         [  Scan All  ] |
+|  🔴 🟡 🟢   Olive 🫒                                          [  Scan All  ] |
 +------------------+------------------------------------------------------------+
 |  📊 Dashboard    |  System Health: 94/100 (Optimal)                           |
 |  🧹 Smart Clean  |  +-------------------+  +-------------------+  +----------+ |

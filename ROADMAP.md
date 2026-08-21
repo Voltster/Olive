@@ -1,13 +1,13 @@
 # Development Roadmap
 
-## Project: NovaClean
+## Project: Olive
 **Goal**: *From initial prototype to a community-ready, open-source macOS app release.*
 
 ---
 
 ```mermaid
 gantt
-    title NovaClean Development Milestones
+    title Olive Development Milestones
     dateFormat  YYYY-MM-DD
     section Phase 1: Engine & Scaffolding
     Project Setup & SPM Architecture     :done, p1_1, 2026-08-21, 2d
@@ -34,7 +34,7 @@ gantt
 ## Detailed Milestone Breakdown
 
 ### 🎯 Milestone 1: Foundation & Core Scaffolding
-- [x] Select project name & branding (**NovaClean**).
+- [x] Select project name & branding (**Olive**).
 - [x] Create PRD, Design System, Roadmap, Security & Privacy specs.
 - [x] Initialize Git repository & `.gitignore`.
 - [ ] Set up Swift Package / Xcode structure for macOS 14+.
@@ -81,5 +81,5 @@ gantt
 ### 🎯 Milestone 7: Open-Source Community Release (v1.0)
 - [ ] Integrate **Sparkle Framework** for automated updates.
 - [ ] Set up GitHub Actions workflow for automatic DMG builds and releases.
-- [ ] Create Homebrew Cask formula (`brew install --cask novaclean`).
+- [ ] Create Homebrew Cask formula (`brew install --cask olive`).
 - [ ] Publish documentation, screenshots, and community contribution guidelines.
