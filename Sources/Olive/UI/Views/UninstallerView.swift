@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 public struct UninstallerView: View {
     @Bindable var uninstaller = UninstallerService.shared
@@ -27,7 +28,10 @@ public struct UninstallerView: View {
                         await uninstaller.loadInstalledApps()
                     }
                 } label: {
-                    Image(systemName: "arrow.clockwise")
+                    HStack(spacing: 6) {
+                        Image(systemName: "arrow.clockwise")
+                        Text("Refresh")
+                    }
                 }
                 .buttonStyle(.bordered)
             }
@@ -40,6 +44,16 @@ public struct UninstallerView: View {
                     .foregroundStyle(.secondary)
                 TextField("Search installed applications...", text: $uninstaller.searchQuery)
                     .textFieldStyle(.plain)
+                
+                if !uninstaller.searchQuery.isEmpty {
+                    Button {
+                        uninstaller.searchQuery = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                }
             }
             .padding(10)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.06)))
@@ -47,17 +61,18 @@ public struct UninstallerView: View {
             
             // App List
             if uninstaller.isLoading {
-                VStack(spacing: 12) {
+                VStack(spacing: 14) {
                     ProgressView()
+                        .controlSize(.large)
                     Text("Scanning applications & residual library files...")
-                        .font(.subheadline)
+                        .font(.headline)
                         .foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if uninstaller.filteredApps.isEmpty {
-                VStack(spacing: 8) {
+                VStack(spacing: 12) {
                     Image(systemName: "shippingbox")
-                        .font(.system(size: 40))
+                        .font(.system(size: 44))
                         .foregroundStyle(.secondary)
                     Text("No applications found")
                         .font(.headline)
@@ -83,25 +98,23 @@ public struct UninstallerView: View {
     }
     
     private func appRow(app: AppInfo) -> some View {
-        HStack(spacing: 14) {
-            Image(systemName: "app.dashed")
-                .font(.title2)
-                .foregroundStyle(Theme.accentOlive)
-                .frame(width: 32, height: 32)
+        HStack(spacing: 16) {
+            // Real macOS App Icon
+            AppIconView(path: app.bundlePath, size: 40)
             
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 Text(app.name)
                     .font(.system(.headline, design: .rounded))
                 
                 HStack(spacing: 8) {
                     if let version = app.version {
                         Text("v\(version)")
-                            .font(.caption2)
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                     }
                     if !app.relatedItems.isEmpty {
-                        Text("\(app.relatedItems.count) leftover items")
-                            .font(.caption2)
+                        Text("• \(app.relatedItems.count) leftover items")
+                            .font(.caption.bold())
                             .foregroundStyle(Theme.accentAmber)
                     }
                 }
@@ -119,63 +132,103 @@ public struct UninstallerView: View {
             .buttonStyle(.bordered)
             .controlSize(.small)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 6)
     }
     
     private func appDetailSheet(app: AppInfo) -> some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
+        VStack(alignment: .leading, spacing: 18) {
+            HStack(spacing: 16) {
+                AppIconView(path: app.bundlePath, size: 54)
+                
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Uninstall \(app.name)")
+                    Text(app.name)
                         .font(.title2.bold())
-                    Text("Total space to reclaim: \(ByteFormatter.format(app.totalSizeBytes))")
+                    Text("Total reclaimable space: \(ByteFormatter.format(app.totalSizeBytes))")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.accentOlive)
                 }
+                
                 Spacer()
+                
                 Button("Done") {
                     selectedApp = nil
                 }
+                .buttonStyle(.bordered)
             }
             
             Divider()
             
-            Text("Associated Files")
+            Text("Associated Files to Remove")
                 .font(.headline)
             
             ScrollView {
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    // Application Bundle
+                    HStack(spacing: 12) {
                         Image(systemName: "app.fill")
-                        Text("Application Bundle (\(app.bundlePath))")
-                            .font(.caption)
+                            .foregroundStyle(Theme.accentOlive)
+                            .frame(width: 24)
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Application Bundle")
+                                .font(.caption.bold())
+                            Text(app.bundlePath)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                        
                         Spacer()
+                        
                         Text(ByteFormatter.format(app.appSizeBytes))
-                            .font(.caption.monospacedDigit())
+                            .font(.caption.monospacedDigit().bold())
+                        
+                        Button {
+                            NSWorkspace.shared.selectFile(app.bundlePath, inFileViewerRootedAtPath: "")
+                        } label: {
+                            Image(systemName: "arrow.up.forward.square")
+                        }
+                        .buttonStyle(.plain)
+                        .help("Reveal in Finder")
                     }
-                    .padding(8)
-                    .background(RoundedRectangle(cornerRadius: 6).fill(Color.white.opacity(0.04)))
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.04)))
                     
+                    // Leftovers
                     ForEach(app.relatedItems) { item in
-                        HStack {
-                            Image(systemName: "folder.badge.gearshape")
+                        HStack(spacing: 12) {
+                            Image(systemName: itemIconName(for: item.itemType))
+                                .foregroundStyle(Theme.accentAmber)
+                                .frame(width: 24)
+                            
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.itemType.rawValue)
                                     .font(.caption.bold())
                                 Text(item.path)
                                     .font(.caption2)
                                     .foregroundStyle(.secondary)
+                                    .lineLimit(1)
                             }
+                            
                             Spacer()
+                            
                             Text(ByteFormatter.format(item.sizeBytes))
                                 .font(.caption.monospacedDigit())
+                            
+                            Button {
+                                NSWorkspace.shared.selectFile(item.path, inFileViewerRootedAtPath: "")
+                            } label: {
+                                Image(systemName: "arrow.up.forward.square")
+                            }
+                            .buttonStyle(.plain)
+                            .help("Reveal in Finder")
                         }
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 6).fill(Color.white.opacity(0.04)))
+                        .padding(10)
+                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.04)))
                     }
                 }
             }
-            .frame(maxHeight: 250)
+            .frame(maxHeight: 280)
             
             HStack {
                 Spacer()
@@ -187,20 +240,36 @@ public struct UninstallerView: View {
                         selectedApp = nil
                     }
                 } label: {
-                    HStack {
+                    HStack(spacing: 8) {
                         if isUninstalling {
                             ProgressView().controlSize(.small)
                         } else {
                             Image(systemName: "trash.fill")
                         }
-                        Text("Move App & Leftovers to Trash")
+                        Text("Move App & All Leftovers to Trash")
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 6)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(Theme.accentRose)
+                .disabled(isUninstalling)
             }
         }
         .padding(24)
-        .frame(minWidth: 500, minHeight: 400)
+        .frame(minWidth: 540, minHeight: 460)
+    }
+    
+    private func itemIconName(for type: LeftoverType) -> String {
+        switch type {
+        case .applicationSupport: return "folder.badge.gearshape"
+        case .caches: return "externaldrive.badge.timemachine"
+        case .preferences: return "gearshape.2"
+        case .savedState: return "clock.arrow.circlepath"
+        case .webKit: return "safari"
+        case .launchAgent: return "bolt.horizontal"
+        case .logs: return "doc.text"
+        case .other: return "doc"
+        }
     }
 }

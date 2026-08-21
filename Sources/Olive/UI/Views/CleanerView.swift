@@ -1,8 +1,9 @@
 import SwiftUI
+import AppKit
 
 public struct CleanerView: View {
     @Bindable var cleanerService = CleanerService.shared
-    @State private var showingReviewSheet: Bool = false
+    @State private var selectedCategoryForReview: ScanCategorySummary?
     @State private var showingCelebration: Bool = false
     
     public init() {}
@@ -27,7 +28,7 @@ public struct CleanerView: View {
                             await cleanerService.scanAll()
                         }
                     } label: {
-                        HStack {
+                        HStack(spacing: 6) {
                             if cleanerService.isScanning {
                                 ProgressView().controlSize(.small)
                             } else {
@@ -111,6 +112,9 @@ public struct CleanerView: View {
             }
             .padding(24)
         }
+        .sheet(item: $selectedCategoryForReview) { summary in
+            categoryDetailSheet(summary: summary)
+        }
         .alert("Cleanup Complete! 🫒", isPresented: $showingCelebration) {
             Button("Done", role: .cancel) {}
         } message: {
@@ -131,16 +135,23 @@ public struct CleanerView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(summary.category.rawValue)
                     .font(.system(.headline, design: .rounded))
-                Text("\(summary.items.count) items found")
+                Text("\(summary.items.count) items · \(ByteFormatter.format(summary.totalSizeBytes))")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             
             Spacer()
             
-            Text(ByteFormatter.format(summary.totalSizeBytes))
-                .font(.system(.headline, design: .rounded, weight: .semibold))
-                .monospacedDigit()
+            Button {
+                selectedCategoryForReview = summary
+            } label: {
+                HStack(spacing: 4) {
+                    Image(systemName: "magnifyingglass")
+                    Text("Inspect")
+                }
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
             
             Toggle("", isOn: Binding(
                 get: { summary.isSelected },
@@ -157,6 +168,110 @@ public struct CleanerView: View {
             .tint(Theme.accentOlive)
         }
         .glassCard()
+    }
+    
+    private func categoryDetailSheet(summary: ScanCategorySummary) -> some View {
+        guard let currentIdx = cleanerService.summaries.firstIndex(where: { $0.category == summary.category }) else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    Image(systemName: summary.category.iconName)
+                        .font(.title)
+                        .foregroundStyle(Theme.accentOlive)
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(summary.category.rawValue)
+                            .font(.title2.bold())
+                        Text(summary.category.description)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    Spacer()
+                    
+                    Button("Done") {
+                        selectedCategoryForReview = nil
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Theme.accentOlive)
+                }
+                
+                HStack {
+                    Text("\(cleanerService.summaries[currentIdx].items.count) items found · Selected: \(ByteFormatter.format(cleanerService.summaries[currentIdx].selectedSizeBytes))")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    Spacer()
+                    
+                    Button("Select All") {
+                        for i in 0..<cleanerService.summaries[currentIdx].items.count {
+                            cleanerService.summaries[currentIdx].items[i].isSelected = true
+                        }
+                        cleanerService.summaries[currentIdx].isSelected = true
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                    
+                    Button("Deselect All") {
+                        for i in 0..<cleanerService.summaries[currentIdx].items.count {
+                            cleanerService.summaries[currentIdx].items[i].isSelected = false
+                        }
+                        cleanerService.summaries[currentIdx].isSelected = false
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                }
+                
+                Divider()
+                
+                ScrollView {
+                    VStack(spacing: 8) {
+                        ForEach(0..<cleanerService.summaries[currentIdx].items.count, id: \.self) { itemIdx in
+                            let item = cleanerService.summaries[currentIdx].items[itemIdx]
+                            HStack(spacing: 12) {
+                                Toggle("", isOn: Binding(
+                                    get: { cleanerService.summaries[currentIdx].items[itemIdx].isSelected },
+                                    set: { val in
+                                        cleanerService.summaries[currentIdx].items[itemIdx].isSelected = val
+                                    }
+                                ))
+                                .toggleStyle(.checkbox)
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(item.name)
+                                        .font(.system(.body, design: .rounded, weight: .semibold))
+                                    Text(item.path)
+                                        .font(.caption2)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                }
+                                
+                                Spacer()
+                                
+                                Text(ByteFormatter.format(item.sizeBytes))
+                                    .font(.caption.monospacedDigit().bold())
+                                
+                                Button {
+                                    NSWorkspace.shared.selectFile(item.path, inFileViewerRootedAtPath: "")
+                                } label: {
+                                    Image(systemName: "arrow.up.forward.square")
+                                }
+                                .buttonStyle(.plain)
+                                .help("Reveal in Finder")
+                            }
+                            .padding(10)
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.04)))
+                        }
+                    }
+                }
+                .frame(maxHeight: 340)
+            }
+            .padding(24)
+            .frame(minWidth: 580, minHeight: 480)
+        )
     }
     
     private var emptyScanPlaceholder: some View {
