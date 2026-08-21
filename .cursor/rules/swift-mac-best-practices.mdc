@@ -1,0 +1,28 @@
+---
+description: Swift and macOS SwiftUI Development Best Practices for NovaClean
+globs: **/*.swift
+alwaysApply: true
+---
+
+# Swift & macOS Best Practices for NovaClean
+
+## 1. SwiftUI & State Management
+- Use `@Observable` (Observation framework) for modern view models in macOS 14+.
+- Avoid memory leaks: ensure tasks and timer publishers cancel appropriately when views disappear (`.onDisappear` or `.task(id:)`).
+- Ensure UI updates always dispatch to the `@MainActor`.
+- Keep view bodies declarative and lightweight; factor complex sub-views into distinct components.
+
+## 2. macOS System Integration & Concurrency
+- Never block the main thread with disk I/O, file scanning, or process execution. Always use Swift Structured Concurrency (`async/await`, `Task.detached`, `TaskGroup`).
+- For file deletion, **always** call `FileManager.default.trashItem(at:resultingItemURL:)` to route files through the native macOS Trash.
+- When calling system utilities or shell scripts, use `Process` with proper stdout/stderr pipe drains to avoid deadlocks on large buffer outputs.
+
+## 3. Performance & Memory Budget
+- Background menu bar monitoring must stay below **30 MB RAM** and **< 0.5% CPU**.
+- Throttle high-frequency UI updates (e.g. per-second sensor polling) using `debounce` or explicit timer intervals.
+- Use `monospacedDigit()` for all numeric metric labels to prevent layout jitter.
+
+## 4. Design & Human Interface Guidelines
+- Use native macOS vibrancy via `NSVisualEffectView` materials (`.sidebar`, `.hudWindow`, `.underWindowBackground`).
+- Implement native keyboard shortcuts (e.g. `⌘R` for refresh, `Space` for QuickLook preview, `⌘⌫` for trash).
+- Support dynamic dark mode and light mode color adaptations automatically.
