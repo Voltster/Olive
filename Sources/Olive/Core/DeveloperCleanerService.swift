@@ -69,11 +69,11 @@ public final class DeveloperCleanerService: @unchecked Sendable {
             // 1. Scan Global Tool Caches
             foundGlobals = Self.scanGlobalToolCaches()
             
-            // 2. Scan Projects recursively up to depth 4
+            // 2. Scan Projects recursively up to depth 6
             let fm = FileManager.default
             for basePath in pathsToScan {
                 guard fm.fileExists(atPath: basePath) else { continue }
-                Self.crawlDirectoryForArtifacts(at: URL(fileURLWithPath: basePath), currentDepth: 0, maxDepth: 4, results: &foundProjects)
+                Self.crawlDirectoryForArtifacts(at: URL(fileURLWithPath: basePath), currentDepth: 0, maxDepth: 6, results: &foundProjects)
             }
             
             let sortedProjects = foundProjects.sorted { $0.sizeBytes > $1.sizeBytes }
@@ -100,14 +100,15 @@ public final class DeveloperCleanerService: @unchecked Sendable {
         guard let contents = try? fm.contentsOfDirectory(
             at: url,
             includingPropertiesForKeys: [.isDirectoryKey, .contentModificationDateKey],
-            options: [.skipsHiddenFiles]
+            options: [] // Scan all directories including .next, .build, .venv
         ) else { return }
         
         for itemURL in contents {
+            let name = itemURL.lastPathComponent
+            if name == ".DS_Store" || name == ".localized" || name == ".git" { continue }
+            
             let isDir = (try? itemURL.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
             guard isDir else { continue }
-            
-            let name = itemURL.lastPathComponent
             
             // Check for specific artifact folder names
             if let type = self.matchArtifactType(name: name) {
