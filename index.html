@@ -91,7 +91,7 @@
 
         <div class="nav-links">
           <a href="#features">Features</a>
-          <a href="#demo">Preview</a>
+          <a href="#matrix">Matrix</a>
           <a href="#comparison">Compare</a>
           <a href="#credits">Credits</a>
           <a
@@ -622,6 +622,124 @@
           </div>
         </div>
       </section>
+
+      <!-- Detailed Implemented Feature Matrix Section -->
+    <section class="feature-matrix-section" id="matrix">
+      <div class="section-header">
+        <span class="section-tag">COMPLETE CAPABILITIES MATRIX</span>
+        <h2 class="section-title">What we've built & implemented</h2>
+        <p class="section-subtitle">
+          Every capability in Olive is built natively with Swift 6 and macOS APIs. Here is the complete feature breakdown across all 7 modules:
+        </p>
+      </div>
+
+      <div class="matrix-grid">
+        <!-- Module 1 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge olive">MODULE 01</span>
+            <h3>🧹 Deep System Cleanup</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>User Caches:</strong> Scans & cleans <code>~/Library/Caches</code></li>
+            <li><span class="check">✓</span> <strong>Developer Artifacts:</strong> Purges DerivedData, NPM temp, & Gradle</li>
+            <li><span class="check">✓</span> <strong>System & App Logs:</strong> Cleans <code>~/Library/Logs</code> and crash reports</li>
+            <li><span class="check">✓</span> <strong>Browser Caches:</strong> Chrome, Safari, and Arc cached assets</li>
+            <li><span class="check">✓</span> <strong>App Leftovers:</strong> Residual files from previously deleted apps</li>
+            <li><span class="check">✓</span> <strong>System Trash:</strong> Integrated Trash bin analyzer & cleaner</li>
+            <li><span class="check">✓</span> <strong>Item Inspector:</strong> Inspect sub-items with Finder reveal before cleaning</li>
+            <li><span class="check">✓</span> <strong>Safety Guarantee:</strong> 100% Trash API (<code>FileManager.trashItem</code>, zero <code>rm</code>)</li>
+          </ul>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge violet">MODULE 02</span>
+            <h3>🛠️ Developer Clean Hub</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>Next.js Caches:</strong> Hidden <code>.next</code> build folders</li>
+            <li><span class="check">✓</span> <strong>Node.js Modules:</strong> <code>node_modules</code> in JS/TS projects</li>
+            <li><span class="check">✓</span> <strong>Python Virtualenvs:</strong> <code>venv</code>, <code>.venv</code>, <code>env</code></li>
+            <li><span class="check">✓</span> <strong>Rust Cargo Targets:</strong> <code>target/</code> build outputs</li>
+            <li><span class="check">✓</span> <strong>Xcode Caches:</strong> DerivedData & Simulator caches</li>
+            <li><span class="check">✓</span> <strong>Swift Package Manager:</strong> <code>.build</code> & SPM caches</li>
+            <li><span class="check">✓</span> <strong>Global Tool Caches:</strong> NPM, Yarn, pnpm, Bun, Cargo, CocoaPods, Homebrew</li>
+            <li><span class="check">✓</span> <strong>Active Project Protection:</strong> Flags active (&lt;7d) vs inactive (&gt;7d)</li>
+          </ul>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge cyan">MODULE 03</span>
+            <h3>💽 Radial Disk Visualizer</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>DaisyDisk-Style Chart:</strong> Radial Canvas Sunburst visualizer</li>
+            <li><span class="check">✓</span> <strong>Concentric Ring Tracks:</strong> Level 1 & Level 2 hierarchies</li>
+            <li><span class="check">✓</span> <strong>Small-Item Aggregation:</strong> Consolidates micro-slivers into "Other"</li>
+            <li><span class="check">✓</span> <strong>Dynamic Center Hub:</strong> Real-time folder size & % of parent on hover</li>
+            <li><span class="check">✓</span> <strong>Breadcrumb Navigation:</strong> Click-to-drill-down and jump back</li>
+            <li><span class="check">✓</span> <strong>Hidden Folder Inspection:</strong> Detects hidden build directories</li>
+            <li><span class="check">✓</span> <strong>Large Files Finder:</strong> Dedicated view for files &gt;100 MB & &gt;1 GB</li>
+          </ul>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge sage">MODULE 04</span>
+            <h3>📊 Telemetry & Process Monitor</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>3D Solar Health Sphere:</strong> Composite system health score</li>
+            <li><span class="check">✓</span> <strong>Per-Core CPU Histogram:</strong> Real-time core utilization</li>
+            <li><span class="check">✓</span> <strong>Metal GPU Load:</strong> Apple Silicon GPU activity tracking</li>
+            <li><span class="check">✓</span> <strong>Calibrated Memory:</strong> Activity Monitor matching formula</li>
+            <li><span class="check">✓</span> <strong>Calibrated APFS Disk:</strong> Finder matching available capacity</li>
+            <li><span class="check">✓</span> <strong>Battery Intelligence:</strong> Health %, cycle count, temp, & wattage</li>
+            <li><span class="check">✓</span> <strong>Live Process Table:</strong> Top 50 processes with icons, CPU, and RAM</li>
+            <li><span class="check">✓</span> <strong>Fan Control Presets:</strong> Auto / Cool / Max manual modes</li>
+          </ul>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge amber">MODULE 05</span>
+            <h3>📱 Smart App Uninstaller</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>High-Res Native Icons:</strong> Uses system <code>NSWorkspace</code> icon provider</li>
+            <li><span class="check">✓</span> <strong>Deep Residual Search:</strong> Finds Application Support & Caches</li>
+            <li><span class="check">✓</span> <strong>Preferences & Plists:</strong> Locates <code>~/Library/Preferences</code></li>
+            <li><span class="check">✓</span> <strong>Saved App States:</strong> Cleans <code>Saved Application State</code></li>
+            <li><span class="check">✓</span> <strong>Bulk Uninstallation:</strong> Select multiple apps for removal</li>
+            <li><span class="check">✓</span> <strong>Safe Undo:</strong> All uninstalled app bundles go to Trash</li>
+          </ul>
+        </div>
+
+        <!-- Module 6 & 7 -->
+        <div class="matrix-card">
+          <div class="matrix-card-header">
+            <span class="matrix-badge rose">MODULE 06 & 07</span>
+            <h3>⚡ Maintenance & Architecture</h3>
+          </div>
+          <ul class="matrix-list">
+            <li><span class="check">✓</span> <strong>DNS Cache Flush:</strong> Clears mDNSResponder caches</li>
+            <li><span class="check">✓</span> <strong>QuickLook Repair:</strong> Resets generator thumbnail cache</li>
+            <li><span class="check">✓</span> <strong>Spotlight Re-Index:</strong> Triggers <code>mdutil</code> re-index</li>
+            <li><span class="check">✓</span> <strong>Startup Manager:</strong> Inspect & toggle <code>LaunchAgents</code></li>
+            <li><span class="check">✓</span> <strong>Light & Dark Mode:</strong> Dynamic theme tokens with switcher</li>
+            <li><span class="check">✓</span> <strong>Zero Sidebar UI:</strong> Floating pill navigation & glass cards</li>
+            <li><span class="check">✓</span> <strong>Distribution:</strong> Standalone DMG, Homebrew Cask, & GPL-3.0</li>
+            <li><span class="check">✓</span> <strong>Zero Telemetry:</strong> 100% offline, private, and telemetry-free</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
       <!-- Comparison Table Section -->
       <section class="comparison-section" id="comparison">
