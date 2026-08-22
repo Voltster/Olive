@@ -74,4 +74,5 @@ cp -R build/Olive.app /Applications/
 
 Olive is released under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for details.
 
-*Attribution*: Inspired by the open-source CLI project [Mole](https://github.com/tw93/mole) by Tw93.
+* **Voltster & Akritrim**: Architecture, SwiftUI components, design, and packaging.
+* **Tw93 ([Mole](https://github.com/tw93/mole))**: Inspiration for CLI cleanliness and macOS deep cleaning scripts.
