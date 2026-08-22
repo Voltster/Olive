@@ -325,19 +325,22 @@ public struct DiskMapView: View {
         guard let contents = try? fm.contentsOfDirectory(
             at: url,
             includingPropertiesForKeys: [.isDirectoryKey, .fileSizeKey],
-            options: [.skipsHiddenFiles]
+            options: [] // Include hidden directories like .next, .build, .venv!
         ) else { return }
         
         var totalSize: UInt64 = 0
         var children: [DiskNode] = []
         
         for itemURL in contents {
+            let name = itemURL.lastPathComponent
+            if name == ".DS_Store" || name == ".localized" { continue }
+            
             let isDir = (try? itemURL.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
             let size = CleanerService.shared.directorySize(at: itemURL)
             
             if size > 1_000_000 { // Only track items > 1MB
                 let child = DiskNode(
-                    name: itemURL.lastPathComponent,
+                    name: name,
                     path: itemURL.path,
                     isDirectory: isDir,
                     sizeBytes: size,
@@ -348,7 +351,7 @@ public struct DiskMapView: View {
                     buildTree(node: child, depth: depth + 1, maxDepth: maxDepth, bigFiles: &bigFiles)
                 } else if !isDir && size > 100_000_000 { // > 100MB
                     bigFiles.append(DiskItem(
-                        name: itemURL.lastPathComponent,
+                        name: name,
                         path: itemURL.path,
                         sizeBytes: size,
                         isDirectory: false
