@@ -18,6 +18,11 @@ let package = Package(
             name: "Olive",
             dependencies: [],
             path: "Sources/Olive"
+        ),
+        .testTarget(
+            name: "OliveTests",
+            dependencies: ["Olive"],
+            path: "Tests/OliveTests"
         )
     ]
 )
