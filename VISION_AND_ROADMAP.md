@@ -1,5 +1,15 @@
 # 🫒 Olive — Product Vision, Brainstorming & Future Roadmap
 
+<div align="center">
+  <p>
+    <img src="https://img.shields.io/badge/Release_Tag-v1.0.0-84CC16?style=flat-square&logo=github" alt="Release Tag: v1.0.0">
+    <img src="https://img.shields.io/badge/Status-Active_Roadmap-blue.svg?style=flat-square" alt="Status: Active Roadmap">
+    <img src="https://img.shields.io/badge/Platform-macOS_14%2B-black.svg?style=flat-square&logo=apple" alt="macOS 14+">
+    <img src="https://img.shields.io/badge/License-GPL_v3-blue.svg?style=flat-square" alt="License: GPL v3">
+    <img src="https://img.shields.io/badge/Next_Milestone-v1.1.0_Developer+-orange.svg?style=flat-square" alt="Next: v1.1.0">
+  </p>
+</div>
+
 > **Mission Statement**: To become the #1 open-source, privacy-first macOS utility suite in the world — the undisputed, 100% free alternative to CleanMyMac X, DaisyDisk, iStat Menus, and Hazel combined.
 
 ---
