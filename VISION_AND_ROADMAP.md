@@ -108,3 +108,13 @@ v1.0.0 (Current)  -->  v1.1.0 (Developer+)  -->  v1.2.0 (Menu Bar HUD)  -->  v2.
 - Dev Clean (.next)    - Simulator Runtimes     - Per-App Energy Drain      - macOS Power Tweaks
 - DaisyDisk Map        - Homebrew Tap           - Background Automation     - Multi-language UI
 ```
+
+---
+
+## 🤝 5. Open-Source Lineage & Credits
+
+* **Voltster & Akritrim**: Native SwiftUI desktop application architecture, Canvas visualizers, and packaging.
+* **Tw93 ([Mole](https://github.com/tw93/mole))**: Inspiration for CLI cleanliness and macOS deep cleaning scripts.
+
+> 💡 **Prefer the command line?** Check out the fantastic CLI tool [Mole by Tw93](https://github.com/tw93/mole) at [mole.fit](https://mole.fit/)!
+

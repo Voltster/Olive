@@ -77,3 +77,5 @@ Olive is released under the **GNU General Public License v3.0 (GPL-3.0)**. See t
 
 * **Voltster & Akritrim**: Architecture, SwiftUI components, design, and packaging.
 * **Tw93 ([Mole](https://github.com/tw93/mole))**: Inspiration for CLI cleanliness and macOS deep cleaning scripts.
+
+> 💡 **Prefer the command line?** Check out the CLI tool [Mole by Tw93](https://github.com/tw93/mole) at [mole.fit](https://mole.fit/)!
