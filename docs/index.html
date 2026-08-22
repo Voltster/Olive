@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olive — Gentle, Privacy-First Mac Optimizer & System Monitor</title>
+  <meta name="description" content="A modern, 100% free & open-source macOS system cleaner, developer junk purger, radial disk analyzer, and real-time telemetry monitor. Zero tracking, zero ads.">
+  
+  <!-- OpenGraph / Social Meta -->
+  <meta property="og:title" content="Olive — Open-Source Mac Cleaner & System Monitor">
+  <meta property="og:description" content="Reclaim gigabytes from node_modules, .next caches, and system junk with zero tracking and safe macOS Trash deletion.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voltster.github.io/Olive/">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Glows -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="#" class="brand">
+        <svg class="brand-logo" width="30" height="30" viewBox="0 0 100 100" fill="none">
+          <ellipse cx="50" cy="57" rx="28" ry="32" fill="url(#oliveGrad)" />
+          <ellipse cx="38" cy="48" rx="8" ry="13" fill="rgba(255,255,255,0.35)" />
+          <path d="M50 28 C62 10, 82 12, 82 12 C82 12, 70 26, 50 28 Z" fill="url(#leafGrad)" />
+          <defs>
+            <linearGradient id="oliveGrad" x1="35" y1="25" x2="65" y2="90" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A3E635"/>
+              <stop offset="0.6" stop-color="#65A30D"/>
+              <stop offset="1" stop-color="#365314"/>
+            </linearGradient>
+            <linearGradient id="leafGrad" x1="50" y1="28" x2="82" y2="12" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#84CC16"/>
+              <stop offset="1" stop-color="#4D7C0F"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand-name">Olive</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#demo">Preview</a>
+        <a href="#comparison">Compare</a>
+        <a href="#credits">Credits</a>
+        <a href="https://github.com/Voltster/Olive" target="_blank" rel="noopener noreferrer" class="github-nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+      <div class="nav-cta">
+        <a href="https://github.com/Voltster/Olive/releases/latest/download/Olive-1.0.0.dmg" class="btn btn-primary btn-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download DMG
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span class="badge-dot"></span>
+          <span>Version 1.0.0 · 100% Free & Open Source</span>
+        </div>
+
+        <h1 class="hero-title">
+          The gentle, privacy-first <br>
+          <span class="gradient-text">Mac optimizer & monitor.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Say goodbye to paid subscriptions and bloated cleaner apps. Olive safely cleans build artifacts, inspects disk space with radial maps, and monitors Mach telemetry in real time. Zero tracking, zero telemetry.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="hero-actions">
+          <a href="https://github.com/Voltster/Olive/releases/latest/download/Olive-1.0.0.dmg" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download for macOS
+            <span class="btn-subtext">macOS 14 Sonoma & 15 Sequoia (Apple Silicon & Intel)</span>
+          </a>
+
+          <div class="brew-command-box" id="brewBox">
+            <span class="brew-prompt">$</span>
+            <code id="brewCode">brew install --cask voltster/tap/olive</code>
+            <button class="copy-btn" id="copyBtn" aria-label="Copy Homebrew command" title="Copy to clipboard">
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span class="copy-tooltip">Copied!</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84CC16" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% Safe Trash-Only Deletions
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84CC16" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            Zero Tracking / No Analytics
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#84CC16" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            GNU GPL-3.0 Open Source
+          </div>
+        </div>
+      </div>
+
+      <!-- App Interface Mockup Preview -->
+      <div class="hero-mockup-wrapper">
+        <div class="mac-window">
+          <!-- Window Header Bar -->
+          <div class="window-header">
+            <div class="traffic-lights">
+              <span class="traffic-light red"></span>
+              <span class="traffic-light yellow"></span>
+              <span class="traffic-light green"></span>
+            </div>
+
+            <div class="window-title-group">
+              <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+                <ellipse cx="50" cy="57" rx="28" ry="32" fill="#84CC16" />
+                <path d="M50 28 C62 10, 82 12, 82 12 C82 12, 70 26, 50 28 Z" fill="#65A30D" />
+              </svg>
+              <span>Olive</span>
+            </div>
+
+            <div class="window-nav-pills">
+              <span class="pill">Clean</span>
+              <span class="pill">Dev Clean</span>
+              <span class="pill">Apps</span>
+              <span class="pill">Optimize</span>
+              <span class="pill">Analyze</span>
+              <span class="pill active">Status</span>
+            </div>
+
+            <div class="window-controls">
+              <span class="icon-circle">☀️</span>
+              <span class="icon-circle">⚙️</span>
+            </div>
+          </div>
+
+          <!-- Window Inner Content (8-Card Telemetry Grid Preview) -->
+          <div class="window-body">
+            <div class="status-grid">
+              
+              <!-- Health Card -->
+              <div class="telemetry-card health-card">
+                <div class="card-meta">
+                  <span class="dot-live"></span>
+                  <span class="card-label sage">HEALTH</span>
+                </div>
+                <div class="health-flex">
+                  <div>
+                    <div class="card-value">100 <span class="val-sub">Optimal</span></div>
+                    <div class="card-subtitle">All sensors normal</div>
+                    <div class="card-uptime">up 9d 5h</div>
+                  </div>
+                  <div class="solar-sphere-preview"></div>
+                </div>
+              </div>
+
+              <!-- CPU Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label olive">CPU</span>
+                  <span class="chip">10 Cores</span>
+                </div>
+                <div class="card-value">7 <span class="val-sub">%</span></div>
+                <div class="mini-equalizer">
+                  <span style="height: 25%"></span>
+                  <span style="height: 45%"></span>
+                  <span style="height: 80%"></span>
+                  <span style="height: 30%"></span>
+                  <span style="height: 60%"></span>
+                  <span style="height: 20%"></span>
+                  <span style="height: 90%"></span>
+                  <span style="height: 15%"></span>
+                </div>
+                <div class="card-uptime">idle · Load 1.2</div>
+              </div>
+
+              <!-- GPU Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label amber">GPU</span>
+                  <span class="chip">Metal Core</span>
+                </div>
+                <div class="card-value">1 <span class="val-sub">%</span></div>
+                <div class="mini-line-graph"></div>
+                <div class="card-uptime">idle · Apple Silicon</div>
+              </div>
+
+              <!-- Memory Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label cyan">MEMORY</span>
+                  <span class="chip">Normal</span>
+                </div>
+                <div class="card-value">55 <span class="val-sub">%</span></div>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar-fill" style="width: 55%"></div>
+                </div>
+                <div class="card-uptime">11.56 GB of 16.00 GB</div>
+              </div>
+
+              <!-- Battery Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label sage">BATTERY</span>
+                  <span class="chip">100% Health</span>
+                </div>
+                <div class="card-value">91 <span class="val-sub">% Plugged In</span></div>
+                <div class="card-subtitle">⚡ Power Connected</div>
+                <div class="card-uptime">35 cycles · 30°C</div>
+              </div>
+
+              <!-- Disk Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label olive">DISK</span>
+                  <span class="chip">245 GB</span>
+                </div>
+                <div class="card-value">18.3 <span class="val-sub">GB Free</span></div>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar-fill olive" style="width: 92%"></div>
+                </div>
+                <div class="card-uptime">226.8 GB used · 92%</div>
+              </div>
+
+              <!-- Network Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label cyan">NETWORK</span>
+                  <span class="chip">Wi-Fi</span>
+                </div>
+                <div class="card-value">3 <span class="val-sub">KB/s</span></div>
+                <div class="mini-network-graph"></div>
+                <div class="card-uptime">↑ 2 KB/s · ↓ 3 KB/s</div>
+              </div>
+
+              <!-- Fan Card -->
+              <div class="telemetry-card">
+                <div class="card-header-flex">
+                  <span class="card-label amber">FAN</span>
+                  <span class="chip">Load 0%</span>
+                </div>
+                <div class="card-value">0 <span class="val-sub">RPM Idle</span></div>
+                <div class="preset-pills">
+                  <span class="preset-pill active">Auto</span>
+                  <span class="preset-pill">Cool</span>
+                  <span class="preset-pill">Max</span>
+                </div>
+                <div class="card-uptime">Managed by macOS</div>
+              </div>
+
+            </div>
+
+            <!-- Bottom Process Activity Preview -->
+            <div class="process-table-preview">
+              <div class="process-table-header">
+                <span>NAME</span>
+                <span>PID</span>
+                <span>CPU %</span>
+                <span>MEM</span>
+                <span>ACTION</span>
+              </div>
+              <div class="process-row">
+                <span class="p-name"><span class="app-icon chrome"></span> Google Chrome</span>
+                <span class="p-pid">18601</span>
+                <span class="p-cpu highlight">16.8% <span class="cpu-bar"></span></span>
+                <span class="p-mem">480 MB</span>
+                <span class="p-act">✕</span>
+              </div>
+              <div class="process-row">
+                <span class="p-name"><span class="app-icon ide"></span> Antigravity IDE</span>
+                <span class="p-pid">18724</span>
+                <span class="p-cpu">14.2% <span class="cpu-bar half"></span></span>
+                <span class="p-mem">512 MB</span>
+                <span class="p-act">✕</span>
+              </div>
+              <div class="process-row">
+                <span class="p-name"><span class="app-icon sys"></span> WindowServer</span>
+                <span class="p-pid">401</span>
+                <span class="p-cpu">2.8%</span>
+                <span class="p-mem">78 MB</span>
+                <span class="p-act">✕</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <span class="section-tag">ENGINEERED FOR MACOS</span>
+        <h2 class="section-title">Everything you need. Zero subscriptions.</h2>
+        <p class="section-subtitle">Olive brings deep cleaning, developer artifact management, and Mach telemetry together into a native Swift app.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon olive">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Deep System Cleanup</h3>
+          <p class="feature-desc">Safely clears gigabytes from user caches, system logs, browser assets, and app leftovers. Every deletion routes through the macOS Trash for instant undoability.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon violet">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Developer Clean Hub</h3>
+          <p class="feature-desc">Indexes nested project folders to purge hidden <code>.next</code> build caches, old <code>node_modules</code>, Python <code>venv</code>, and Rust <code>target</code>. Inactive projects (>7d) are filtered automatically.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon cyan">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a10 10 0 0 1 10 10"/>
+              <path d="M12 6a6 6 0 0 1 6 6"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Radial Sunburst Disk Map</h3>
+          <p class="feature-desc">DaisyDisk-style interactive Canvas visualizer. Hover over concentric sectors to see exact size shares, drill down with breadcrumb trails, and find hidden large files.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+              <line x1="6" y1="6" x2="6.01" y2="6"/>
+              <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Startup & LaunchAgents</h3>
+          <p class="feature-desc">Inspect and toggle persistent background daemons in <code>~/Library/LaunchAgents</code> and <code>/Library/LaunchDaemons</code> to speed up your Mac's boot time.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon sage">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Calibrated Mach Telemetry</h3>
+          <p class="feature-desc">Measures RAM using Apple's official Activity Monitor formula and Disk using APFS Important Capacity. Accurate byte-for-byte with native macOS tools.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon rose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">100% Privacy & Zero Telemetry</h3>
+          <p class="feature-desc">No network calls, no analytics SDKs, no ads, and no background tracking. Olive runs completely offline on your Mac under the GNU GPL-3.0 license.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table Section -->
+    <section class="comparison-section" id="comparison">
+      <div class="section-header">
+        <span class="section-tag">TRANSPARENT & OPEN</span>
+        <h2 class="section-title">How Olive compares</h2>
+        <p class="section-subtitle">No subscriptions, no shady background upselling, no closed-source binaries.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight-col">Olive 🫒</th>
+              <th>CleanMyMac</th>
+              <th>DaisyDisk</th>
+              <th>iStat Menus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Price</strong></td>
+              <td class="highlight-col font-bold text-green">100% Free</td>
+              <td>$39.95 / year</td>
+              <td>$9.99 one-time</td>
+              <td>$14.99 one-time</td>
+            </tr>
+            <tr>
+              <td><strong>Open Source License</strong></td>
+              <td class="highlight-col font-bold text-green">GPL-3.0</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+              <td>Proprietary</td>
+            </tr>
+            <tr>
+              <td><strong>Privacy & Zero Telemetry</strong></td>
+              <td class="highlight-col font-bold text-green">100% Offline</td>
+              <td>Analytics Enabled</td>
+              <td>Telemetry</td>
+              <td>Telemetry</td>
+            </tr>
+            <tr>
+              <td><strong>Developer Clean (.next, node_modules)</strong></td>
+              <td class="highlight-col font-bold text-green">Included</td>
+              <td>Partial</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td><strong>Radial Sunburst Disk Analyzer</strong></td>
+              <td class="highlight-col font-bold text-green">Included</td>
+              <td>Separate module</td>
+              <td>Core Feature</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td><strong>Live Top Process Activity Manager</strong></td>
+              <td class="highlight-col font-bold text-green">Included</td>
+              <td>Basic</td>
+              <td>No</td>
+              <td>Included</td>
+            </tr>
+            <tr>
+              <td><strong>Safe macOS Trash Deletion</strong></td>
+              <td class="highlight-col font-bold text-green">Enforced</td>
+              <td>Permanent rm</td>
+              <td>Permanent rm</td>
+              <td>N/A</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Credits & Attribution Section -->
+    <section class="credits-section" id="credits">
+      <div class="credits-card">
+        <div class="credits-icon">🤝</div>
+        <h3 class="credits-title">Credits & Open-Source Attribution</h3>
+        <p class="credits-text">
+          Olive is crafted with respect for the open-source developer ecosystem. Special acknowledgment and attribution to:
+        </p>
+        <div class="credits-badge-list">
+          <a href="https://github.com/tw93/mole" target="_blank" rel="noopener noreferrer" class="credit-chip">
+            <strong>Mole</strong> by Tw93 — Inspiration for CLI cleanliness & deep macOS optimization scripts
+          </a>
+          <a href="https://github.com/Voltster/Olive" target="_blank" rel="noopener noreferrer" class="credit-chip">
+            <strong>Voltster</strong> — Native SwiftUI architecture, Canvas visualizers & packaging
+          </a>
+        </div>
+        <p class="license-notice">
+          Released under the <strong>GNU General Public License v3.0 (GPL-3.0)</strong>. Contributions, issue reports, and pull requests are welcomed on GitHub.
+        </p>
+      </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="final-cta">
+      <div class="cta-card">
+        <h2>Ready to optimize your Mac?</h2>
+        <p>Download the free, standalone app bundle or install via Homebrew.</p>
+        
+        <div class="hero-actions center">
+          <a href="https://github.com/Voltster/Olive/releases/latest/download/Olive-1.0.0.dmg" class="btn btn-primary btn-lg">
+            Download Olive 1.0.0 (DMG)
+          </a>
+          <a href="https://github.com/Voltster/Olive" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="brand-name">Olive</span>
+        <p>A gentle, privacy-first Mac optimizer. Built with SwiftUI 6.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://github.com/Voltster/Olive">GitHub Repository</a>
+        <a href="https://github.com/Voltster/Olive/releases">Releases</a>
+        <a href="https://github.com/Voltster/Olive/blob/main/LICENSE">GPL-3.0 License</a>
+        <a href="https://github.com/Voltster/Olive/blob/main/PRIVACY.md">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Voltster & Contributors. Dedicated to free and open-source software.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
