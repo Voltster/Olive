@@ -13,16 +13,17 @@
 
 ---
 
-## ✨ Features
+## ✨ Key Modules & Capabilities
 
-- 🧹 **Deep System Cleaner**: Safely reclaim gigabytes from user caches, developer artifacts (`node_modules`, `DerivedData`, `target`), stale logs, and orphaned application leftovers.
-- 🛠️ **Developer Clean Hub**: Scans and cleans `.next` (Next.js), `node_modules`, `venv` (Python), `target` (Rust), and global tool package caches with smart inactive project detection (>7 days).
-- 📦 **Smart App Uninstaller**: Completely remove apps alongside their hidden library support files, preferences, saved states, and launch agents.
-- 🗺️ **Visual Disk Space Analyzer**: Interactive DaisyDisk-style Canvas Radial Sunburst visualizer with hover bloom, breadcrumbs, and a dedicated Large Files finder (>100MB).
-- 📊 **8-Card Telemetry Dashboard & Live Process Manager**: Real-time per-core CPU histogram, RAM pressure, APFS disk capacity matching Finder, network waveforms, and an embedded Activity Monitor table.
-- ⚡ **macOS System Maintenance & Startup Manager**: One-click DNS flushes, QuickLook repairs, Spotlight re-indexing, and LaunchAgent daemon toggle switches.
-- 🌗 **Light & Dark Mode Support**: Dynamic theme tokens with instant sun/moon toggle.
-- 🛡️ **Safety-First Guarantee**: Uses the official macOS Trash API (`FileManager.trashItem`) for full undoability (`⌘Z`). Zero permanent `rm -rf` deletions.
+| Module | Built & Implemented Features |
+| :--- | :--- |
+| **🧹 Deep System Cleanup** | • User Caches (`~/Library/Caches`)<br>• Developer Artifacts (`DerivedData`, NPM, Gradle)<br>• System & App Logs (`~/Library/Logs`)<br>• Browser Caches (Chrome, Safari, Arc)<br>• App Leftovers & Orphaned Application Support files<br>• System Trash inspection & safe recovery<br>• Item-by-item Inspector Sheet with Finder reveal<br>• 100% Trash-Only Deletions (`FileManager.trashItem`, zero `rm -rf`) |
+| **🛠️ Developer Clean Hub** | • Hidden Next.js build cache (`.next`) recursive cleaner<br>• `node_modules` in JS/TS and MERN projects<br>• Python Virtual Environments (`venv`, `.venv`)<br>• Rust Cargo build outputs (`target/`)<br>• Xcode DerivedData & Simulator caches<br>• Swift Package Manager (`.build` & caches)<br>• Global Tool Caches (NPM, Yarn, pnpm, Bun, Cargo, Gradle, CocoaPods, Homebrew)<br>• Inactive Project Protection (&lt;7d active vs &gt;7d inactive) |
+| **💽 Radial Disk Visualizer** | • DaisyDisk-style Canvas Radial Sunburst visualizer<br>• Concentric Ring Tracks (Level 1 & Level 2 hierarchies)<br>• Small-Item Aggregation (groups tiny slivers into "Other")<br>• Dynamic Center Hub with folder size & % of parent share<br>• Multi-level breadcrumb trail navigation<br>• Large & Old Files Finder (&gt;100 MB & &gt;1 GB) |
+| **📊 Status Telemetry & Activity Monitor** | • 3D Solar Health Sphere & composite health score<br>• Per-Core CPU utilization histogram<br>• Metal GPU load & memory bandwidth tracker<br>• Mach Kernel Memory Pressure (calibrated to Activity Monitor)<br>• APFS Disk Capacity (calibrated to macOS Finder available capacity)<br>• Battery health %, cycle count, temperature & wattage<br>• Live Process Activity Table streaming top 50 processes with icons, CPU, and RAM<br>• 1-Click Process Kill action & Fan Control Presets (`Auto/Cool/Max`) |
+| **📱 Smart App Uninstaller** | • Full `/Applications` directory scanner<br>• High-resolution native system icons (`NSWorkspace`)<br>• Deep residual search (`Application Support`, `Caches`, `Preferences`, `Saved State`)<br>• Batch uninstallation safely routed to macOS Trash |
+| **⚡ Maintenance & Startup Manager** | • One-click DNS Cache Flush (`mDNSResponder`)<br>• QuickLook cache reset & thumbnail rebuild<br>• Spotlight index rebuild (`mdutil`)<br>• Mach kernel memory purge (`purge`)<br>• Startup & LaunchAgents Manager (`~/Library/LaunchAgents` & `/Library/LaunchDaemons`) |
+| **🎨 Native Design & Safety** | • Zero-sidebar UI with floating top-pill navigation<br>• Full Light & Dark Mode with instant sun/moon switcher<br>• Settings dialog with `Esc` keyboard shortcut<br>• Native vector Olive logo mark (`OliveLogoView`)<br>• 100% Offline, Zero Telemetry & GNU GPL-3.0 License |
 
 ---
 
