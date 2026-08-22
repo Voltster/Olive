@@ -8,6 +8,7 @@ public final class SystemMonitorService: @unchecked Sendable {
     
     public var currentTelemetry: SystemTelemetry = SystemTelemetry()
     public var isMonitoring: Bool = false
+    public var networkThroughputHistory: [(bytesIn: Double, bytesOut: Double)] = []
     
     private var timer: Timer?
     private var previousCPUInfo: processor_info_array_t?
@@ -74,6 +75,10 @@ public final class SystemMonitorService: @unchecked Sendable {
         
         DispatchQueue.main.async {
             self.currentTelemetry = telemetry
+            self.networkThroughputHistory.append((bytesIn: network.bytesInPerSec, bytesOut: network.bytesOutPerSec))
+            if self.networkThroughputHistory.count > 30 {
+                self.networkThroughputHistory.removeFirst()
+            }
         }
     }
     
